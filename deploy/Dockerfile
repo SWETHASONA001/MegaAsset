@@ -1,18 +1,17 @@
-# Build the React frontend
+# Stage 1: Build the React frontend
 FROM node:22-slim AS frontend-build
 
 WORKDIR /src/frontend
-COPY frontend/package*.json ./
+COPY frontend/package.json ./
+COPY frontend/package-lock.json ./
 RUN npm ci
 COPY frontend/ ./
 RUN npm run build
 
-# Run the FastAPI application
+# Stage 2: Run the FastAPI application
 FROM python:3.11-slim
 
-RUN apt-get update && apt-get install -y --no-install-recommends 
-    libgl1 libglib2.0-0 
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends libgl1 libglib2.0-0 && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
