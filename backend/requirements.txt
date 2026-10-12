@@ -1,0 +1,21 @@
+fastapi
+uvicorn[standard]
+sqlalchemy>=2.0
+pydantic>=2
+pydantic-settings
+python-multipart
+python-jose[cryptography]
+bcrypt
+email-validator
+pymupdf
+openpyxl
+python-docx
+numpy
+scikit-learn
+langgraph
+fastembed
+rapidocr_onnxruntime
+httpx
+pytest
+# optional, for browser E2E screenshots against local Edge
+playwright

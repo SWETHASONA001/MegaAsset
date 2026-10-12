@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Noto Sans Tamil", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-brand-50: #eef8fc;
+  --color-brand-100: #d6eef8;
+  --color-brand-200: #ade0f1;
+  --color-brand-300: #74c9e5;
+  --color-brand-400: #38a9d1;
+  --color-brand-500: #168cb8;
+  --color-brand-600: #0c709a;
+  --color-brand-700: #0d5a7d;
+  --color-brand-800: #0f4a67;
+  --color-brand-900: #0b3b5c;
+  --color-brand-950: #072538;
+
+  --color-ink-900: #0f1b2d;
+  --color-ink-700: #334155;
+  --color-ink-500: #64748b;
+  --color-ink-400: #94a3b8;
+  --color-line: #e5e9f0;
+  --color-surface: #f6f8fb;
+
+  --shadow-card: 0 1px 2px rgba(15, 27, 45, 0.04), 0 1px 3px rgba(15, 27, 45, 0.06);
+  --shadow-pop: 0 10px 30px -10px rgba(15, 27, 45, 0.25), 0 4px 10px -4px rgba(15, 27, 45, 0.08);
+}
+
+:root {
+  color-scheme: light;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  @apply text-ink-900 antialiased;
+  background-color: #dfeaf6;
+  background-image:
+    radial-gradient(1100px 520px at 90% -8%, rgba(56, 189, 248, 0.35), transparent 60%),
+    radial-gradient(900px 600px at -8% 35%, rgba(45, 212, 191, 0.28), transparent 60%),
+    radial-gradient(900px 650px at 60% 115%, rgba(139, 92, 246, 0.22), transparent 60%),
+    radial-gradient(600px 400px at 40% 40%, rgba(255, 255, 255, 0.5), transparent 70%);
+  background-attachment: fixed;
+  font-feature-settings: "cv11", "ss01";
+}
+
+::selection {
+  background: var(--color-brand-100);
+}
+
+/* Page header banner */
+.page-hero {
+  background-image:
+    radial-gradient(600px 220px at 85% 0%, rgba(56, 189, 248, 0.45), transparent 70%),
+    radial-gradient(500px 200px at 10% 120%, rgba(45, 212, 191, 0.40), transparent 70%),
+    linear-gradient(115deg, #072538 0%, #0b3b5c 35%, #0c5f82 65%, #0f766e 100%);
+  border-color: rgba(56, 189, 248, 0.35) !important;
+  color: #fff;
+}
+/* text inside the dark banner */
+.page-hero h1 { color: #ffffff !important; }
+.page-hero p, .page-hero .text-ink-700, .page-hero .text-ink-500 { color: #cfe6f5 !important; }
+.page-hero a:not([class*="bg-"]) { color: #7dd3fc !important; }
+.page-hero .ring-brand-200 { --tw-ring-color: rgba(125, 211, 252, 0.5); }
+.page-hero [class*="text-brand-700"].rounded-full { background: rgba(255,255,255,0.12) !important; color: #bae6fd !important; }
+.page-hero .font-mono { color: #e0f2fe; }
+
+/* sidebar + top bar */
+.sidebar-bg { background-image: linear-gradient(180deg, #072538 0%, #0a3550 55%, #0b4a52 100%); }
+.topbar {
+  background: linear-gradient(90deg, rgba(255,255,255,0.92), rgba(236,248,255,0.92) 60%, rgba(230,250,245,0.92));
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(90deg, #38bdf8, #2dd4bf, #a78bfa) 1;
+}
+
+/* cards: soft colour wash at the top edge */
+.card-accent { background-image: linear-gradient(180deg, rgba(224, 242, 254, 0.55) 0, rgba(255,255,255,0) 64px); }
+
+/* tinted table headers app-wide */
+thead.bg-slate-50\/60, thead[class*="bg-slate-50"] { background: linear-gradient(90deg, #e0f2fe, #ccfbf1) !important; color: #0b3b5c; }
+
+/* Scrollbars */
+.thin-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+.thin-scroll::-webkit-scrollbar-thumb { background: #d5dbe5; border-radius: 8px; }
+.thin-scroll::-webkit-scrollbar-track { background: transparent; }
+
+/* Markdown-ish rendering of assistant answers */
+.prose-answer p { margin: 0.35rem 0; }
+.prose-answer ul { margin: 0.3rem 0 0.5rem; padding-left: 1.1rem; list-style: disc; }
+.prose-answer li { margin: 0.25rem 0; line-height: 1.55; }
+.prose-answer strong { font-weight: 600; color: var(--color-ink-900); }
+.prose-answer em { color: var(--color-ink-500); font-style: normal; font-size: 0.8125rem; }
+
+.cite-chip {
+  @apply inline-flex items-center justify-center min-w-[1.25rem] h-[1.15rem] px-1 mx-0.5 rounded text-[10px] font-semibold align-[1px] cursor-pointer transition;
+  background: var(--color-brand-50);
+  color: var(--color-brand-700);
+  border: 1px solid var(--color-brand-200);
+}
+.cite-chip:hover { background: var(--color-brand-100); }
+
+.react-flow__attribution { display: none; }
+
+@keyframes shimmer { 100% { transform: translateX(100%); } }
+.skeleton { position: relative; overflow: hidden; background: #eef1f6; }
+.skeleton::after {
+  content: ""; position: absolute; inset: 0; transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+  animation: shimmer 1.4s infinite;
+}
+
+.focus-ring { @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-1; }
